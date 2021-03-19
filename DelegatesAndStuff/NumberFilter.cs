@@ -6,6 +6,7 @@ namespace DelegatesAndStuff
     //creating a delegate that matches the IsOdd and IsEven signitures
     //so we can pass this as kind-of a function pointer
     public delegate bool FilterMethod(int x);
+    //on line 28, don't need to specifiy the delegate type because it is already defined here
 
     public class NumberFilter
     {
@@ -24,9 +25,13 @@ namespace DelegatesAndStuff
 
         public List<int> FilterOutEvens(List<int> numbers)
         {
-            return Filter(numbers, (int x) => x%2 != 0 );
+            //return Filter(numbers, IsEven);
+            return Filter(numbers, theNumber => theNumber % 2 != 0 );
         }
 
+        // We can also do the code below because a Predicate always returns a boolean and we specify what it takes in.
+        // In this case, it is an integer parameter.
+        // private List<int> Filter(List<int> numbers, Predicate<int> op)
         private List<int> Filter(List<int> numbers, FilterMethod op)
         {
             var results = new List<int>();
